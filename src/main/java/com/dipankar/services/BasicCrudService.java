@@ -13,9 +13,9 @@ public interface BasicCrudService<T> {
 
     <S extends T> Iterable<S> saveAll(Iterable<S> items);
 
-    Optional<T> getById(String id);
+    Optional<T> getById(Long id);
 
-    void deleteById(String id);
+    void deleteById(Long id);
 
     void delete(T item);
 
