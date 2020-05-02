@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
 @RequestMapping("territories")
-public class TerritoryController {
+public class TerritoryController implements Serializable {
 
     @Autowired
     private TerritoryService territoryService;

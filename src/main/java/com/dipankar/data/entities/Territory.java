@@ -1,11 +1,13 @@
 package com.dipankar.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "territories") @Entity @Data
-public class Territory {
+public class Territory implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -20,6 +22,4 @@ public class Territory {
     @OneToOne
     @JoinColumn(name = "regionid")
     private Region region;
-
-
 }

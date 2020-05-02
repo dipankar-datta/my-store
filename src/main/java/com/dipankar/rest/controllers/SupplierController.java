@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
 @RequestMapping("suppliers")
-public class SupplierController {
+public class SupplierController implements Serializable {
 
     @Autowired
     private SupplierService supplierService;
