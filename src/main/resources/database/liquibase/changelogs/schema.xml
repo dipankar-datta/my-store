@@ -1,0 +1,313 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-1">
+        <createTable tableName="categories">
+            <column autoIncrement="true" name="CategoryID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="CategoryName" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="MEDIUMTEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-2">
+        <createTable tableName="customers">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CustomerID" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CompanyName" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ContactName" type="VARCHAR(30)"/>
+            <column name="ContactTitle" type="VARCHAR(30)"/>
+            <column name="Address" type="VARCHAR(60)"/>
+            <column name="City" type="VARCHAR(15)"/>
+            <column name="Region" type="VARCHAR(15)"/>
+            <column name="PostalCode" type="VARCHAR(10)"/>
+            <column name="Country" type="VARCHAR(15)"/>
+            <column name="Phone" type="VARCHAR(24)"/>
+            <column name="Fax" type="VARCHAR(24)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-3">
+        <createTable tableName="employees">
+            <column autoIncrement="true" name="EmployeeID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="LastName" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FirstName" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Title" type="VARCHAR(30)"/>
+            <column name="TitleOfCourtesy" type="VARCHAR(25)"/>
+            <column name="BirthDate" type="datetime"/>
+            <column name="HireDate" type="datetime"/>
+            <column name="Address" type="VARCHAR(60)"/>
+            <column name="City" type="VARCHAR(15)"/>
+            <column name="Region" type="VARCHAR(15)"/>
+            <column name="PostalCode" type="VARCHAR(10)"/>
+            <column name="Country" type="VARCHAR(15)"/>
+            <column name="HomePhone" type="VARCHAR(24)"/>
+            <column name="Extension" type="VARCHAR(4)"/>
+            <column name="Notes" type="MEDIUMTEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ReportsTo" type="INT"/>
+            <column name="PhotoPath" type="VARCHAR(255)"/>
+            <column name="Salary" type="FLOAT(12)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-4">
+        <createTable tableName="employeeterritories">
+            <column name="EmployeeID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="TerritoryID" type="VARCHAR(20)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-5">
+        <createTable tableName="order_details">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OrderID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ProductID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column defaultValueNumeric="0.0000" name="UnitPrice" type="DECIMAL(10, 4)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="Quantity" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0.0" name="Discount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-6">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="OrderID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CustomerID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EmployeeID" type="INT"/>
+            <column name="OrderDate" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RequiredDate" type="datetime"/>
+            <column name="ShippedDate" type="datetime"/>
+            <column name="ShipVia" type="INT"/>
+            <column name="Freight" type="DECIMAL(10)"/>
+            <column name="ShipName" type="VARCHAR(50)"/>
+            <column name="ShipAddress" type="VARCHAR(50)"/>
+            <column name="ShipCity" type="VARCHAR(50)"/>
+            <column name="ShipRegion" type="VARCHAR(50)"/>
+            <column name="ShipPostalCode" type="VARCHAR(50)"/>
+            <column name="ShipCountry" type="VARCHAR(50)"/>
+            <column name="OldCustomerId" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-7">
+        <createTable tableName="products">
+            <column autoIncrement="true" name="ProductID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ProductName" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SupplierID" type="INT"/>
+            <column name="CategoryID" type="INT"/>
+            <column name="QuantityPerUnit" type="VARCHAR(20)"/>
+            <column defaultValueNumeric="0.0000" name="UnitPrice" type="DECIMAL(10, 4)"/>
+            <column defaultValueNumeric="0" name="UnitsInStock" type="SMALLINT"/>
+            <column defaultValueNumeric="0" name="UnitsOnOrder" type="SMALLINT"/>
+            <column defaultValueNumeric="0" name="ReorderLevel" type="SMALLINT"/>
+            <column defaultValueBoolean="false" name="Discontinued" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-8">
+        <createTable tableName="region">
+            <column autoIncrement="true" name="RegionID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="RegionDescription" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-9">
+        <createTable tableName="shippers">
+            <column autoIncrement="true" name="ShipperID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="CompanyName" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Phone" type="VARCHAR(24)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-10">
+        <createTable tableName="suppliers">
+            <column autoIncrement="true" name="SupplierID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="CompanyName" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ContactName" type="VARCHAR(30)"/>
+            <column name="ContactTitle" type="VARCHAR(30)"/>
+            <column name="Address" type="VARCHAR(60)"/>
+            <column name="City" type="VARCHAR(15)"/>
+            <column name="Region" type="VARCHAR(15)"/>
+            <column name="PostalCode" type="VARCHAR(10)"/>
+            <column name="Country" type="VARCHAR(15)"/>
+            <column name="Phone" type="VARCHAR(24)"/>
+            <column name="Fax" type="VARCHAR(24)"/>
+            <column name="HomePage" type="MEDIUMTEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-11">
+        <createTable tableName="territories">
+            <column name="TerritoryID" type="VARCHAR(20)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="TerritoryDescription" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RegionID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-12">
+        <createIndex indexName="CategoryName" tableName="categories">
+            <column name="CategoryName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-13">
+        <createIndex indexName="CompanyName" tableName="suppliers">
+            <column name="CompanyName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-14">
+        <createIndex indexName="order_details_id" tableName="order_details">
+            <column name="id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-15">
+        <createIndex indexName="pk_customers_customerid" tableName="customers">
+            <column name="id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-16">
+        <createIndex indexName="pk_employees_employees" tableName="employees">
+            <column name="ReportsTo"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-17">
+        <createIndex indexName="pk_employeeterritories_territories" tableName="employeeterritories">
+            <column name="TerritoryID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-18">
+        <createIndex indexName="pk_order_details_products" tableName="order_details">
+            <column name="ProductID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-19">
+        <createIndex indexName="pk_orderid" tableName="orders">
+            <column name="OrderID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-20">
+        <createIndex indexName="pk_orders_customers" tableName="orders">
+            <column name="CustomerID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-21">
+        <createIndex indexName="pk_orders_employees" tableName="orders">
+            <column name="EmployeeID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-22">
+        <createIndex indexName="pk_orders_shippers" tableName="orders">
+            <column name="ShipVia"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-23">
+        <createIndex indexName="pk_products_categories" tableName="products">
+            <column name="CategoryID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-24">
+        <createIndex indexName="pk_products_productname" tableName="products">
+            <column name="ProductName"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-25">
+        <createIndex indexName="pk_products_suppliers" tableName="products">
+            <column name="SupplierID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-26">
+        <createIndex indexName="pk_territories_region" tableName="territories">
+            <column name="RegionID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-27">
+        <createIndex indexName="pk_territoryid" tableName="territories">
+            <column name="id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-28">
+        <addForeignKeyConstraint baseColumnNames="RegionID" baseTableName="territories" constraintName="FK_Territories_Region" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="RegionID" referencedTableName="region" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-29">
+        <addForeignKeyConstraint baseColumnNames="ReportsTo" baseTableName="employees" constraintName="fk_employees_employees" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EmployeeID" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-30">
+        <addForeignKeyConstraint baseColumnNames="OrderID" baseTableName="order_details" constraintName="fk_order_details_orders" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="OrderID" referencedTableName="orders" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-31">
+        <addForeignKeyConstraint baseColumnNames="ProductID" baseTableName="order_details" constraintName="fk_order_details_products" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ProductID" referencedTableName="products" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-32">
+        <addForeignKeyConstraint baseColumnNames="CustomerID" baseTableName="orders" constraintName="fk_orders_customers" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="customers" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-33">
+        <addForeignKeyConstraint baseColumnNames="EmployeeID" baseTableName="orders" constraintName="fk_orders_employees" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EmployeeID" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-34">
+        <addForeignKeyConstraint baseColumnNames="ShipVia" baseTableName="orders" constraintName="fk_orders_shippers" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ShipperID" referencedTableName="shippers" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-35">
+        <addForeignKeyConstraint baseColumnNames="CategoryID" baseTableName="products" constraintName="fk_products_categories" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="CategoryID" referencedTableName="categories" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-36">
+        <addForeignKeyConstraint baseColumnNames="SupplierID" baseTableName="products" constraintName="fk_products_suppliers" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SupplierID" referencedTableName="suppliers" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-37">
+        <addForeignKeyConstraint baseColumnNames="EmployeeID" baseTableName="employeeterritories" constraintName="pk_employeeterritories_employees" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EmployeeID" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="Dipankar Datta (generated)" id="1588439703566-38">
+        <addForeignKeyConstraint baseColumnNames="TerritoryID" baseTableName="employeeterritories" constraintName="pk_employeeterritories_territories" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="TerritoryID" referencedTableName="territories" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
