@@ -19,7 +19,7 @@ public class TerritoryRequestDTO implements RequestDTO<Territory>, Serializable 
     private Long id;
 
     @NotNull(message = "Territory cannot be null")
-    @Size(min = 1, max = 50, message = "Last nameTerritory should be between 4 and 50 characters long")
+    @Size(min = 1, max = 50, message = "Territory should be between 1 and 50 characters long")
     @JsonProperty("territoryId")
     private String territoryId;
 
