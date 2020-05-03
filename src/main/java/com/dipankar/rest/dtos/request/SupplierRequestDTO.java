@@ -1,5 +1,6 @@
 package com.dipankar.rest.dtos.request;
 
+import com.dipankar.data.entities.Supplier;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SupplierRequestDTO implements Serializable {
+public class SupplierRequestDTO implements RequestDTO<Supplier>, Serializable {
 
 
     @JsonProperty("id")
@@ -72,4 +73,20 @@ public class SupplierRequestDTO implements Serializable {
     @Size(min = 4, max = 50, message = "Home page should be between 4 and 50 characters long")
     @JsonProperty("homePage")
     private String homePage;
+
+    public Supplier toEntity() {
+        return Supplier.builder()
+                .id(id)
+                .companyName(companyName)
+                .contactName(contactName)
+                .contactTitle(contactTitle)
+                .address(address)
+                .city(city)
+                .region(region)
+                .postalCode(postalCode)
+                .country(country)
+                .phone(phone)
+                .fax(fax)
+                .homePage(homePage).build();
+    }
 }

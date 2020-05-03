@@ -1,11 +1,12 @@
 package com.dipankar.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "order_details") @Entity(name = "orderitem") @Data
+@Table(name = "order_details") @Entity @Data @Builder
 public class OrderItem {
 
     @Id

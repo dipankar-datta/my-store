@@ -1,6 +1,7 @@
 package com.dipankar.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "employees") @Entity @Data
+@Table(name = "employees") @Entity @Data @Builder
 public class Employee implements Serializable {
 
     @Id

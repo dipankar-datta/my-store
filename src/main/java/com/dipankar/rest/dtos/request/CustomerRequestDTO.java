@@ -1,5 +1,6 @@
 package com.dipankar.rest.dtos.request;
 
+import com.dipankar.data.entities.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerRequestDTO implements Serializable {
+public class CustomerRequestDTO implements RequestDTO<Customer>, Serializable {
 
     @JsonProperty("id")
     private Long id;
@@ -72,4 +73,19 @@ public class CustomerRequestDTO implements Serializable {
 
     @JsonProperty("fax")
     private String fax;
+
+    public Customer toEntity() {
+        return Customer.builder()
+                .id(id)
+                .companyName(companyName)
+                .contactName(contactName)
+                .contactTitle(contactTitle)
+                .address(address)
+                .city(city)
+                .region(region)
+                .postalCode(postalCode)
+                .country(country)
+                .phone(phone)
+                .fax(fax).build();
+    }
 }

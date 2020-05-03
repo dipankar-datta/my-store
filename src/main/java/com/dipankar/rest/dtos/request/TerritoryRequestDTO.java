@@ -1,5 +1,6 @@
 package com.dipankar.rest.dtos.request;
 
+import com.dipankar.data.entities.Territory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TerritoryRequestDTO implements Serializable {
+public class TerritoryRequestDTO implements RequestDTO<Territory>, Serializable {
 
     @JsonProperty("id")
     private Long id;
@@ -31,4 +32,13 @@ public class TerritoryRequestDTO implements Serializable {
     @Size(min = 1, max = 50, message = "Region should be between 4 and 50 characters long")
     @JsonProperty("region")
     private RegionRequestDTO region;
+
+    public Territory toEntity() {
+        return Territory.builder()
+                .id(id)
+                .territoryId(territoryId)
+                .territoryDescription(territoryDescription)
+                .region(region.toEntity())
+                .build();
+    }
 }

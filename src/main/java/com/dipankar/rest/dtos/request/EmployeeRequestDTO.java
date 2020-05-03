@@ -1,5 +1,6 @@
 package com.dipankar.rest.dtos.request;
 
+import com.dipankar.data.entities.Employee;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,11 +12,12 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeRequestDTO implements Serializable {
+public class EmployeeRequestDTO implements RequestDTO<Employee>, Serializable {
 
     @JsonProperty("id")
     private Long id;
@@ -101,4 +103,27 @@ public class EmployeeRequestDTO implements Serializable {
 
     @JsonProperty("territories")
     private List<TerritoryRequestDTO> territories;
+
+    public Employee toEntity() {
+        return Employee.builder()
+                .id(id)
+                .lastName(lastName)
+                .firstName(firstName)
+                .title(title)
+                .titleOfCourtesy(titleOfCourtesy)
+                .birthDate(birthDate)
+                .hireDate(hireDate)
+                .address(address)
+                .city(city)
+                .region(region)
+                .postalCode(postalCode)
+                .country(country)
+                .homePhone(homePhone)
+                .extension(extension)
+                .notes(notes)
+                .reportsTo(reportsTo.toEntity())
+                .salary(salary)
+                .territories(territories.stream().map(tr -> tr.toEntity()).collect(Collectors.toList())).build();
+
+    }
 }

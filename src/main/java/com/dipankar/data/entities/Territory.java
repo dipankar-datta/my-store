@@ -1,12 +1,12 @@
 package com.dipankar.data.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "territories") @Entity @Data
+@Table(name = "territories") @Entity @Data @Builder
 public class Territory implements Serializable {
 
     @Id

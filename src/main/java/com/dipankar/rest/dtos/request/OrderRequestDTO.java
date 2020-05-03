@@ -1,5 +1,6 @@
 package com.dipankar.rest.dtos.request;
 
+import com.dipankar.data.entities.Order;
 import com.dipankar.data.entities.OrderItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,11 +12,12 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderRequestDTO implements Serializable {
+public class OrderRequestDTO implements RequestDTO<Order>, Serializable {
 
 
     @JsonProperty("id")
@@ -84,4 +86,25 @@ public class OrderRequestDTO implements Serializable {
     @NotNull(message = "Order items cannot be null")
     @JsonProperty("orderItems")
     private List<OrderItemRequestDTO> orderItems;
+
+    @Override
+    public Order toEntity() {
+        return Order.builder()
+                .id(id)
+                .customer(customer.toEntity())
+                .orderdate(orderdate)
+                .requiredDate(requiredDate)
+                .shippedDate(shippedDate)
+                .shipVia(shipVia.toEntity())
+                .freight(freight)
+                .shipName(shipName)
+                .shipAddress(shipAddress)
+                .shipCity(shipCity)
+                .shipRegion(shipRegion)
+                .shipPostalCode(shipPostalCode)
+                .shipCountry(shipCountry)
+                .orderItems(
+                        orderItems.stream().map(oi -> oi.toEntity()).collect(Collectors.toList())
+                ).build();
+    }
 }

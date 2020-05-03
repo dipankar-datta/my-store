@@ -1,7 +1,10 @@
 package com.dipankar.rest.dtos.response;
 
+import com.dipankar.data.entities.Category;
+import com.dipankar.data.entities.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CustomerResponseDTO implements Serializable {
 
     @JsonProperty("id")
@@ -46,4 +50,19 @@ public class CustomerResponseDTO implements Serializable {
 
     @JsonProperty("fax")
     private String fax;
+
+    public static CustomerResponseDTO entityToResponseDTO(Customer customer) {
+        return CustomerResponseDTO.builder()
+                .id(customer.getId())
+                .companyName(customer.getCompanyName())
+                .contactName(customer.getContactName())
+                .contactTitle(customer.getContactTitle())
+                .address(customer.getAddress())
+                .city(customer.getCity())
+                .region(customer.getRegion())
+                .postalCode(customer.getPostalCode())
+                .country(customer.getCountry())
+                .phone(customer.getPhone())
+                .fax(customer.getFax()).build();
+    }
 }

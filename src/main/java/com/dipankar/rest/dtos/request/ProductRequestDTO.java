@@ -1,6 +1,7 @@
 package com.dipankar.rest.dtos.request;
 
 import com.dipankar.data.entities.Category;
+import com.dipankar.data.entities.Product;
 import com.dipankar.data.entities.Supplier;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -64,4 +65,18 @@ public class ProductRequestDTO implements Serializable {
     @Size(min = 1, max = 1, message = "Discontinued should be between 1 character long")
     @JsonProperty("discontinued")
     private boolean discontinued;
+
+    public Product toEntity() {
+        return Product.builder()
+                .id(id)
+                .productName(productName)
+                .supplier(supplier.toEntity())
+                .category(category.toEntity())
+                .quantityPerUnit(quantityPerUnit)
+                .unitPrice(unitPrice)
+                .unitsInStock(unitsInStock)
+                .unitsOnOrder(unitsOnOrder)
+                .reorderLevel(reorderLevel)
+                .discontinued(discontinued).build();
+    }
 }

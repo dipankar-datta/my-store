@@ -1,10 +1,11 @@
 package com.dipankar.data.entities;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "products") @Entity @Data
+@Table(name = "products") @Entity @Data @Builder
 public class Product {
 
     @Id

@@ -1,13 +1,14 @@
 package com.dipankar.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Builder;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "orders") @Entity @Data
+@Table(name = "orders") @Entity @Data @Builder
 public class Order implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +20,7 @@ public class Order implements Serializable {
     private Customer customer;
 
     @Column(name = "orderdate")
-    private Date orderdate;
+    private Date orderDate;
 
     @Column(name = "requireddate")
     private Date requiredDate;
