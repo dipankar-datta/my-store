@@ -1,7 +1,6 @@
 package com.dipankar.rest.dtos.response;
 
 import com.dipankar.data.entities.Order;
-import com.dipankar.data.entities.OrderItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

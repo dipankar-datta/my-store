@@ -1,14 +1,11 @@
 package com.dipankar.rest.dtos.request;
 
-import com.dipankar.data.entities.Category;
 import com.dipankar.data.entities.Product;
-import com.dipankar.data.entities.Supplier;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
