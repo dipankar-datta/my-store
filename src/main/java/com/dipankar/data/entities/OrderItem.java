@@ -1,12 +1,14 @@
 package com.dipankar.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name = "order_details") @Entity @Data @Builder
+@Table(name = "order_details") @Entity @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class OrderItem {
 
     @Id
@@ -14,10 +16,8 @@ public class OrderItem {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "orderid")
-    @JsonBackReference
-    private Order order;
+    @Column(name = "orderid")
+    private Long orderId;
 
     @OneToOne
     @JoinColumn(name = "productid")

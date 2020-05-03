@@ -76,6 +76,7 @@ public class EmployeeResponseDTO implements Serializable {
     private List<TerritoryResponseDTO> territories;
 
     public static EmployeeResponseDTO entityToResponseDTO(Employee employee) {
+        System.out.println("");
         return EmployeeResponseDTO.builder()
                 .id(employee.getId())
                 .lastName(employee.getLastName())
@@ -91,7 +92,7 @@ public class EmployeeResponseDTO implements Serializable {
                 .homePhone(employee.getHomePhone())
                 .extension(employee.getExtension())
                 .notes(employee.getNotes())
-                .reportsTo(EmployeeResponseDTO.entityToResponseDTO(employee.getReportsTo()))
+                .reportsTo(employee.getReportsTo() != null ? EmployeeResponseDTO.entityToResponseDTO(employee.getReportsTo()) : null)
                 .salary(employee.getSalary())
                 .territories(
                         employee

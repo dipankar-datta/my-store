@@ -24,10 +24,9 @@ public class OrderItemRequestDTO implements RequestDTO<OrderItem>, Serializable 
     @JsonProperty("id")
     private Long id;
 
-    @NotNull(message = "Order name cannot be null")
     @Size(min = 1, max = 50, message = "Order should be between 1 and 50 characters long")
-    @JsonProperty("order")
-    private OrderRequestDTO order;
+    @JsonProperty("orderId")
+    private Long orderId;
 
 
     @NotNull(message = "Product name cannot be null")
@@ -55,7 +54,7 @@ public class OrderItemRequestDTO implements RequestDTO<OrderItem>, Serializable 
     public OrderItem toEntity() {
         return OrderItem.builder()
                 .id(id)
-                .order(order.toEntity())
+                .orderId(orderId)
                 .product(product.toEntity())
                 .unitPrice(unitPrice)
                 .quantity(quantity)

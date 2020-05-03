@@ -1,14 +1,17 @@
 package com.dipankar.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "orders") @Entity @Data @Builder
+@Table(name = "orders") @Entity @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Order implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +56,11 @@ public class Order implements Serializable {
     @Column(name = "shipcountry")
     private String shipCountry;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "order_details",
+            joinColumns = {@JoinColumn(name = "orderid")},
+            inverseJoinColumns = {@JoinColumn(name = "id")})
     private List<OrderItem> orderItems;
 
 }

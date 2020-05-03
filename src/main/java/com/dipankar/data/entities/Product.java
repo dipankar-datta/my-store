@@ -1,11 +1,13 @@
 package com.dipankar.data.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name = "products") @Entity @Data @Builder
+@Table(name = "products") @Entity @Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class Product {
 
     @Id

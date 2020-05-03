@@ -23,8 +23,8 @@ public class OrderItemResponseDTO implements Serializable {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("order")
-    private OrderResponseDTO order;
+    @JsonProperty("orderId")
+    private Long orderId;
 
     @JsonProperty("product")
     private ProductResponseDTO product;
@@ -41,7 +41,7 @@ public class OrderItemResponseDTO implements Serializable {
     public static OrderItemResponseDTO entityToResponseDTO(OrderItem orderItem) {
         return OrderItemResponseDTO.builder()
                 .id(orderItem.getId())
-                .order(OrderResponseDTO.entityToResponseDTO(orderItem.getOrder()))
+                .orderId(orderItem.getOrderId())
                 .product(ProductResponseDTO.entityToResponseDTO(orderItem.getProduct()))
                 .unitPrice(orderItem.getUnitPrice())
                 .quantity(orderItem.getQuantity())

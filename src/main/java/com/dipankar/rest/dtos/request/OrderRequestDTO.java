@@ -92,7 +92,7 @@ public class OrderRequestDTO implements RequestDTO<Order>, Serializable {
         return Order.builder()
                 .id(id)
                 .customer(customer.toEntity())
-                .orderdate(orderdate)
+                .orderDate(orderdate)
                 .requiredDate(requiredDate)
                 .shippedDate(shippedDate)
                 .shipVia(shipVia.toEntity())
