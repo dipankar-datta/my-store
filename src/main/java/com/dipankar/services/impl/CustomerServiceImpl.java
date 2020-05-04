@@ -3,23 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Customer;
 import com.dipankar.data.repositories.CustomerRepository;
 import com.dipankar.services.CustomerService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
+@Service @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
-
-    @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     @Override
     public List<Customer> list() {

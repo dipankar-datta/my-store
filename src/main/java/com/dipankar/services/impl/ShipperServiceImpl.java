@@ -3,21 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Shipper;
 import com.dipankar.data.repositories.ShipperRepository;
 import com.dipankar.services.ShipperService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class ShipperServiceImpl implements ShipperService {
 
     private ShipperRepository shipperRepository;
-
-    @Autowired
-    public ShipperServiceImpl(ShipperRepository shipperRepository) {
-        this.shipperRepository = shipperRepository;
-    }
 
     @Override
     public List<Shipper> list() {

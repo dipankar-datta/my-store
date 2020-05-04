@@ -3,22 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Order;
 import com.dipankar.data.repositories.OrderRepository;
 import com.dipankar.services.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-
     private OrderRepository orderRepository;
-
-    @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
 
     @Override
     public List<Order> list() {

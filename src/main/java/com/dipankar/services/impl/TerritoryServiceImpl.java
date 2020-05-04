@@ -3,21 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Territory;
 import com.dipankar.data.repositories.TerritoryRepository;
 import com.dipankar.services.TerritoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class TerritoryServiceImpl implements TerritoryService {
 
     private TerritoryRepository territoryRepository;
-
-    @Autowired
-    public TerritoryServiceImpl(TerritoryRepository territoryRepository) {
-        this.territoryRepository = territoryRepository;
-    }
 
     @Override
     public List<Territory> list() {

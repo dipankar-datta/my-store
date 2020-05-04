@@ -3,21 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Supplier;
 import com.dipankar.data.repositories.SupplierRepository;
 import com.dipankar.services.SupplierService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class SupplierServiceImpl implements SupplierService {
 
     private SupplierRepository supplierRepository;
-
-    @Autowired
-    public SupplierServiceImpl(SupplierRepository supplierRepository) {
-        this.supplierRepository = supplierRepository;
-    }
 
     @Override
     public List<Supplier> list() {

@@ -3,21 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Region;
 import com.dipankar.data.repositories.RegionRepository;
 import com.dipankar.services.RegionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class RegionServiceImpl implements RegionService {
 
     private RegionRepository regionRepository;
-
-    @Autowired
-    public RegionServiceImpl(RegionRepository regionRepository) {
-        this.regionRepository = regionRepository;
-    }
 
     @Override
     public List<Region> list() {

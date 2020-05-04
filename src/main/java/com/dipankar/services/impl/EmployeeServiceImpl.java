@@ -3,21 +3,16 @@ package com.dipankar.services.impl;
 import com.dipankar.data.entities.Employee;
 import com.dipankar.data.repositories.EmployeeRepository;
 import com.dipankar.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
-
-    @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
 
     @Override
     public List<Employee> list() {
