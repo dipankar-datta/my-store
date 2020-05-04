@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 
-//@SpringBootTest
+@SpringBootTest
 public class CategoryServiceTest {
 
     private final CategoryRepository categoryRepository = Mockito.mock(CategoryRepository.class);
