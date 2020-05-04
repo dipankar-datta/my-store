@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class ShipperServiceImpl implements ShipperService {
 
-    @Autowired
     private ShipperRepository shipperRepository;
+
+    @Autowired
+    public ShipperServiceImpl(ShipperRepository shipperRepository) {
+        this.shipperRepository = shipperRepository;
+    }
 
     @Override
     public List<Shipper> list() {

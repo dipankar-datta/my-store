@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class TerritoryServiceImpl implements TerritoryService {
 
-    @Autowired
     private TerritoryRepository territoryRepository;
+
+    @Autowired
+    public TerritoryServiceImpl(TerritoryRepository territoryRepository) {
+        this.territoryRepository = territoryRepository;
+    }
 
     @Override
     public List<Territory> list() {

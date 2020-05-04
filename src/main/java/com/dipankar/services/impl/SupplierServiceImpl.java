@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class SupplierServiceImpl implements SupplierService {
 
-    @Autowired
     private SupplierRepository supplierRepository;
+
+    @Autowired
+    public SupplierServiceImpl(SupplierRepository supplierRepository) {
+        this.supplierRepository = supplierRepository;
+    }
 
     @Override
     public List<Supplier> list() {

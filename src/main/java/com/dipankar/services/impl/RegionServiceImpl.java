@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class RegionServiceImpl implements RegionService {
 
-    @Autowired
     private RegionRepository regionRepository;
+
+    @Autowired
+    public RegionServiceImpl(RegionRepository regionRepository) {
+        this.regionRepository = regionRepository;
+    }
 
     @Override
     public List<Region> list() {
