@@ -42,7 +42,7 @@ public class CategoryController implements Serializable {
     @ApiOperation(
             value = "Gets Category by id ",
             notes = "Please provide a valid id of a Category in order to get the details of it.",
-            response = Category.class)
+            response = CategoryResponseDTO.class)
     public CategoryResponseDTO getCategoryById(
             @ApiParam(value = "ID of the Category you need", required = true, example = "0")
             @PathVariable Long categoryId) {

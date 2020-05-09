@@ -47,7 +47,7 @@ public class ShipperController implements Serializable {
     @ApiOperation(
             value = "Gets Shipper by id ",
             notes = "Please provide a valid id of a Shipper in order to get the details of it.",
-            response = Employee.class)
+            response = ShipperResponseDTO.class)
     public ShipperResponseDTO getShipperById(
             @ApiParam(value = "ID of the Shipper", required = true, example = "0")
             @PathVariable Long shipperId) {

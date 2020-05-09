@@ -46,7 +46,7 @@ public class ProductController {
     @ApiOperation(
             value = "Gets Product by id ",
             notes = "Please provide a valid id of a Product in order to get the details of it.",
-            response = Employee.class)
+            response = ProductResponseDTO.class)
     public ProductResponseDTO getProductById(
             @ApiParam(value = "ID of the Product", required = true, example = "0")
             @PathVariable Long productId) {

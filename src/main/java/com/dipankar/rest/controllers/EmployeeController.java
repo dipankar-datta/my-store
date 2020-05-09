@@ -46,7 +46,7 @@ public class EmployeeController implements Serializable {
     @ApiOperation(
             value = "Gets Employee by id ",
             notes = "Please provide a valid id of a Employee in order to get the details of it.",
-            response = Employee.class)
+            response = EmployeeResponseDTO.class)
     public EmployeeResponseDTO getEmployeeById(
             @ApiParam(value = "ID of the Employee", required = true, example = "0")
             @PathVariable Long employeeId) {

@@ -46,7 +46,7 @@ public class CustomerController implements Serializable {
     @ApiOperation(
             value = "Gets Customer by id ",
             notes = "Please provide a valid id of a Customer in order to get the details of it.",
-            response = Customer.class)
+            response = CustomerResponseDTO.class)
     public CustomerResponseDTO getCustomerById(
             @ApiParam(value = "ID of the Customer", required = true, example = "0")
             @PathVariable Long customerId) {

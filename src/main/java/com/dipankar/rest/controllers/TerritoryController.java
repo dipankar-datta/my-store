@@ -47,7 +47,7 @@ public class TerritoryController implements Serializable {
     @ApiOperation(
             value = "Gets Territory by id ",
             notes = "Please provide a valid id of a Territory in order to get the details of it.",
-            response = Employee.class)
+            response = TerritoryResponseDTO.class)
     public TerritoryResponseDTO getTerritoryById(
             @ApiParam(value = "ID of the Territory", required = true, example = "0")
             @PathVariable Long territoryId) {

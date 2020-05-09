@@ -47,7 +47,7 @@ public class RegionController implements Serializable {
     @ApiOperation(
             value = "Gets Region by id ",
             notes = "Please provide a valid id of a Region in order to get the details of it.",
-            response = Employee.class)
+            response = RegionResponseDTO.class)
     public RegionResponseDTO getRegionById(
             @ApiParam(value = "ID of the Region", required = true, example = "0")
             @PathVariable Long regionId) {

@@ -46,7 +46,7 @@ public class OrderController implements Serializable {
     @ApiOperation(
             value = "Gets Order by id ",
             notes = "Please provide a valid id of a Order in order to get the details of it.",
-            response = Employee.class)
+            response = OrderResponseDTO.class)
     public OrderResponseDTO getOrderById(
             @ApiParam(value = "ID of the Order", required = true, example = "0")
             @PathVariable Long orderId) {
