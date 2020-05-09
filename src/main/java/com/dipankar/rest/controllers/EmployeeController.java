@@ -5,6 +5,8 @@ import com.dipankar.data.entities.Employee;
 import com.dipankar.rest.dtos.response.CustomerResponseDTO;
 import com.dipankar.rest.dtos.response.EmployeeResponseDTO;
 import com.dipankar.services.EmployeeService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +19,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("employees")
+@RequestMapping("/api/employees")
 public class EmployeeController implements Serializable {
 
     @Autowired
     private EmployeeService employeeService;
 
     @GetMapping
+    @ApiOperation(
+            value = "Gets all Employees",
+            notes = "Use this service only when necessary",
+            response = List.class)
     public List<EmployeeResponseDTO> employeeList() {
         List<Employee> employeeList = employeeService.list();
         if (employeeList != null && !employeeList.isEmpty()) {
@@ -37,7 +43,13 @@ public class EmployeeController implements Serializable {
     }
 
     @GetMapping(path = {"/{employeeId}"})
-    public EmployeeResponseDTO getEmployeeById(@PathVariable Long employeeId) {
+    @ApiOperation(
+            value = "Gets Employee by id ",
+            notes = "Please provide a valid id of a Employee in order to get the details of it.",
+            response = Employee.class)
+    public EmployeeResponseDTO getEmployeeById(
+            @ApiParam(value = "ID of the Employee", required = true, example = "0")
+            @PathVariable Long employeeId) {
         Optional<Employee> employeeOptional = employeeService.getById(employeeId);
         return employeeOptional.isPresent() ?
                 EmployeeResponseDTO.entityToResponseDTO(employeeOptional.get()) : null;

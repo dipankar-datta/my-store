@@ -5,6 +5,8 @@ import com.dipankar.data.entities.Order;
 import com.dipankar.rest.dtos.response.EmployeeResponseDTO;
 import com.dipankar.rest.dtos.response.OrderResponseDTO;
 import com.dipankar.services.OrderService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +19,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("orders")
+@RequestMapping("/api/orders")
 public class OrderController implements Serializable {
 
     @Autowired
     private OrderService orderService;
 
     @GetMapping
+    @ApiOperation(
+            value = "Gets all Orders",
+            notes = "Use this service only when necessary",
+            response = List.class)
     public List<OrderResponseDTO> orderList() {
         List<Order> orderList =  orderService.list();
         if (orderList != null && !orderList.isEmpty()) {
@@ -37,7 +43,13 @@ public class OrderController implements Serializable {
     }
 
     @GetMapping(path = {"/{orderId}"})
-    public OrderResponseDTO getOrderById(@PathVariable Long orderId) {
+    @ApiOperation(
+            value = "Gets Order by id ",
+            notes = "Please provide a valid id of a Order in order to get the details of it.",
+            response = Employee.class)
+    public OrderResponseDTO getOrderById(
+            @ApiParam(value = "ID of the Order", required = true, example = "0")
+            @PathVariable Long orderId) {
         Optional<Order> orderOptional = orderService.getById(orderId);
         return orderOptional.isPresent() ?
                 OrderResponseDTO.entityToResponseDTO(orderOptional.get()) : null;

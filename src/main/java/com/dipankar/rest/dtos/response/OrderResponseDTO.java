@@ -1,7 +1,10 @@
 package com.dipankar.rest.dtos.response;
 
+import com.dipankar.apputility.AppConstants;
 import com.dipankar.data.entities.Order;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,15 +19,19 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel(description = "Details of the Order")
 public class OrderResponseDTO implements Serializable {
 
     @JsonProperty("id")
+    @ApiModelProperty(notes = "ID of the Order")
     private Long id;
 
     @JsonProperty("customer")
+    @ApiModelProperty(notes = "Ordering Customer")
     private CustomerResponseDTO customer;
 
     @JsonProperty("orderdate")
+    @ApiModelProperty(notes = "Date of Order. Format " + AppConstants.DATE_FORMAT)
     private Date orderDate;
 
     @JsonProperty("requiredDate")
