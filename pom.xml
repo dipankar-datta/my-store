@@ -93,11 +93,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+
+			<!-- This plugin is required for exporting database schema and data.
+				 This plugin should be disabled. It should be enabled only when needed
+				 and then it should be disabled back.
+				 Before using this plugin make sure maven dependencies are refreshed or resolved.
+			-->
+			<!--<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<configuration>
 					<propertyFile>src/main/resources/database/liquibase/liquibase.properties</propertyFile>
+					<changeLogFile>src/main/resources/database/liquibase/changelogs/changelog-master.xml</changeLogFile>
 				</configuration>
 				<executions>
 					<execution>
@@ -107,7 +114,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
