@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,5 +25,15 @@ public class ShipperServiceTest {
         Mockito.when(shipperRepository.findAll()).thenReturn(Arrays.asList(Shipper.builder().build()));
         List<Shipper> shippers = shipperService.list();
         assertThat(shippers.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void getById() {
+        Long id = 100L;
+        Mockito
+                .when(shipperRepository.findById(id))
+                .thenReturn(java.util.Optional.ofNullable(Shipper.builder().build()));
+        Optional<Shipper> categoryOptional = shipperService.getById(id);
+        assertThat(categoryOptional.isPresent()).isTrue();
     }
 }

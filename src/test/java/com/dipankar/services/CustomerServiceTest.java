@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class CustomerServiceTest {
@@ -24,5 +25,15 @@ public class CustomerServiceTest {
         Mockito.when(customerRepository.findAll()).thenReturn(Arrays.asList(Customer.builder().build()));
         List<Customer> customerList = customerService.list();
         assertThat(customerService.list().size()).isEqualTo(1);
+    }
+
+    @Test
+    public void getById() {
+        Long id = 100L;
+        Mockito
+                .when(customerRepository.findById(id))
+                .thenReturn(java.util.Optional.ofNullable(Customer.builder().build()));
+        Optional<Customer> categoryOptional = customerService.getById(id);
+        assertThat(categoryOptional.isPresent()).isTrue();
     }
 }

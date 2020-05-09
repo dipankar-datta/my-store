@@ -1,15 +1,19 @@
 package com.dipankar.rest.controllers;
 
+import com.dipankar.data.entities.Category;
 import com.dipankar.data.entities.Customer;
+import com.dipankar.rest.dtos.response.CategoryResponseDTO;
 import com.dipankar.rest.dtos.response.CustomerResponseDTO;
 import com.dipankar.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -30,5 +34,13 @@ public class CustomerController implements Serializable {
         } else {
             return null;
         }
+    }
+
+    @GetMapping(path = {"/{customerId}"})
+    public CustomerResponseDTO getCustomerById(@PathVariable Long customerId) {
+        Optional<Customer> customerOptional = customerService.getById(customerId);
+        return customerOptional.isPresent() ?
+                CustomerResponseDTO.entityToResponseDTO(customerOptional.get()) : null;
+
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 public class EmployeeServiceTest {
@@ -25,5 +26,15 @@ public class EmployeeServiceTest {
         Mockito.when(employeeRepository.findAll()).thenReturn(Arrays.asList(Employee.builder().build()));
         List<Employee> employeeList = employeeService.list();
         assertThat(employeeList.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void getById() {
+        Long id = 100L;
+        Mockito
+                .when(employeeRepository.findById(id))
+                .thenReturn(java.util.Optional.ofNullable(Employee.builder().build()));
+        Optional<Employee> categoryOptional = employeeService.getById(id);
+        assertThat(categoryOptional.isPresent()).isTrue();
     }
 }
