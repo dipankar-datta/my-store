@@ -1,11 +1,9 @@
 package com.dipankar.rest.controllers;
 
-import com.dipankar.data.entities.Category;
 import com.dipankar.data.entities.Customer;
-import com.dipankar.rest.dtos.response.CategoryResponseDTO;
 import com.dipankar.rest.dtos.response.CustomerResponseDTO;
 import com.dipankar.services.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +15,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("customers")
+@RequestMapping("/customers")
+@AllArgsConstructor
 public class CustomerController implements Serializable {
 
-    @Autowired
     private CustomerService customerService;
 
     @GetMapping

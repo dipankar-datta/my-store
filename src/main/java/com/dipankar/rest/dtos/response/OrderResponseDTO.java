@@ -72,6 +72,7 @@ public class OrderResponseDTO implements Serializable {
                 .shipCity(order.getShipCity())
                 .shipRegion(order.getShipRegion())
                 .shipPostalCode(order.getShipPostalCode())
+                .shipName(order.getShipName())
                 .shipCountry(order.getShipCountry())
                 .orderItems(
                         order

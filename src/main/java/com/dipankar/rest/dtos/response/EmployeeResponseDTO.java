@@ -89,6 +89,7 @@ public class EmployeeResponseDTO implements Serializable {
                 .homePhone(employee.getHomePhone())
                 .extension(employee.getExtension())
                 .notes(employee.getNotes())
+                .country(employee.getCountry())
                 .reportsTo(employee.getReportsTo() != null ? EmployeeResponseDTO.entityToResponseDTO(employee.getReportsTo()) : null)
                 .salary(employee.getSalary())
                 .territories(
