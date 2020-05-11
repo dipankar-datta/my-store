@@ -39,7 +39,7 @@ public class OrderControllerTest extends AbstractControllerTest{
     public void list() throws Exception {
         Mockito.when(orderService.list())
                 .thenReturn(Collections.singletonList(getOrder(orderDate, requiredDate, shippedDate)));
-        mockMvc.perform(get("/orders"))
+        mockMvc.perform(get("/api/orders"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -58,7 +58,7 @@ public class OrderControllerTest extends AbstractControllerTest{
     public void getById() throws Exception {
         Mockito.when(orderService.getById(1L))
                 .thenReturn(Optional.of(getOrder(orderDate, requiredDate, shippedDate)));
-        mockMvc.perform(get("/orders/1"))
+        mockMvc.perform(get("/api/orders/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

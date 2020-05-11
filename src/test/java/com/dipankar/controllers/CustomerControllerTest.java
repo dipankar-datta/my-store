@@ -24,7 +24,7 @@ public class CustomerControllerTest extends AbstractControllerTest{
     public void list() throws Exception {
 
         Mockito.when(customerService.list()).thenReturn(Collections.singletonList(getCustomer()));
-        mockMvc.perform(get("/customers"))
+        mockMvc.perform(get("/api/customers"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -34,7 +34,7 @@ public class CustomerControllerTest extends AbstractControllerTest{
     @Test
     public void getById() throws Exception {
         Mockito.when(customerService.getById(1L)).thenReturn(Optional.of(getCustomer()));
-        mockMvc.perform(get("/customers/1"))
+        mockMvc.perform(get("/api/customers/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

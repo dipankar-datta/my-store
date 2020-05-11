@@ -42,7 +42,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
     @Test
     public void list() throws Exception {
         Mockito.when(employeeService.list()).thenReturn(Collections.singletonList(getEmployee(dob, hireDate)));
-        mockMvc.perform(get("/employees"))
+        mockMvc.perform(get("/api/employees"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -52,7 +52,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
     @Test
     public void getById() throws Exception {
         Mockito.when(employeeService.getById(1L)).thenReturn(Optional.of(getEmployee(dob, hireDate)));
-        mockMvc.perform(get("/employees/1"))
+        mockMvc.perform(get("/api/employees/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

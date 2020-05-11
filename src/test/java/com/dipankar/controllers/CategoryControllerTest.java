@@ -25,7 +25,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
     public void list() throws Exception {
 
         Mockito.when(categoryService.list()).thenReturn(Collections.singletonList(getCategory()));
-        mockMvc.perform(get("/categories"))
+        mockMvc.perform(get("/api/categories"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -41,7 +41,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
     @Test
     public void getById() throws Exception {
         Mockito.when(categoryService.getById(1L)).thenReturn(Optional.of(getCategory()));
-        mockMvc.perform(get("/categories/1"))
+        mockMvc.perform(get("/api/categories/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

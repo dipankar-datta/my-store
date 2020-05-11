@@ -24,7 +24,7 @@ public class RegionControllerTest extends AbstractControllerTest{
     @Test
     public void list() throws Exception {
         Mockito.when(regionService.list()).thenReturn(Collections.singletonList(getRegion()));
-        mockMvc.perform(get("/regions"))
+        mockMvc.perform(get("/api/regions"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -40,7 +40,7 @@ public class RegionControllerTest extends AbstractControllerTest{
     @Test
     public void getById() throws Exception {
         Mockito.when(regionService.getById(1L)).thenReturn(Optional.of(getRegion()));
-        mockMvc.perform(get("/regions/1"))
+        mockMvc.perform(get("/api/regions/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

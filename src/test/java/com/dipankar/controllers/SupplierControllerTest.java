@@ -25,7 +25,7 @@ public class SupplierControllerTest extends AbstractControllerTest{
     public void list() throws Exception {
         Mockito.when(supplierService.list()).thenReturn(Collections.singletonList(getSupplier()));
 
-        mockMvc.perform(get("/suppliers"))
+        mockMvc.perform(get("/api/suppliers"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -42,7 +42,7 @@ public class SupplierControllerTest extends AbstractControllerTest{
     public void getById() throws Exception {
         Mockito.when(supplierService.getById(1L)).thenReturn(Optional.of(getSupplier()));
 
-        mockMvc.perform(get("/suppliers/1"))
+        mockMvc.perform(get("/api/suppliers/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

@@ -26,7 +26,7 @@ public class TerritoryControllerTest extends AbstractControllerTest{
     @Test
     public void list() throws Exception {
         Mockito.when(territoryService.list()).thenReturn(Collections.singletonList(getTerritory()));
-        mockMvc.perform(get("/territories"))
+        mockMvc.perform(get("/api/territories"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -42,7 +42,7 @@ public class TerritoryControllerTest extends AbstractControllerTest{
     @Test
     public void getById() throws Exception {
         Mockito.when(territoryService.getById(1L)).thenReturn(Optional.of(getTerritory()));
-        mockMvc.perform(get("/territories/1"))
+        mockMvc.perform(get("/api/territories/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

@@ -25,7 +25,7 @@ public class ShipperControllerTest extends AbstractControllerTest{
     public void list() throws Exception {
         Mockito.when(shipperService.list()).thenReturn(Collections.singletonList(getShipper()));
 
-        mockMvc.perform(get("/shippers"))
+        mockMvc.perform(get("/api/shippers"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -42,7 +42,7 @@ public class ShipperControllerTest extends AbstractControllerTest{
     public void getById() throws Exception {
         Mockito.when(shipperService.getById(1L)).thenReturn(Optional.of(getShipper()));
 
-        mockMvc.perform(get("/shippers/1"))
+        mockMvc.perform(get("/api/shippers/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

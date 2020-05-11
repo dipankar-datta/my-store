@@ -29,7 +29,7 @@ public class ProductControllerTest  extends AbstractControllerTest{
     public void list() throws Exception {
         Mockito.when(productService.list()).thenReturn(Collections.singletonList(getProduct()));
 
-        mockMvc.perform(get("/products"))
+        mockMvc.perform(get("/api/products"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -46,7 +46,7 @@ public class ProductControllerTest  extends AbstractControllerTest{
     public void getById() throws Exception {
         Mockito.when(productService.getById(1L)).thenReturn(Optional.of(getProduct()));
 
-        mockMvc.perform(get("/products/1"))
+        mockMvc.perform(get("/api/products/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
