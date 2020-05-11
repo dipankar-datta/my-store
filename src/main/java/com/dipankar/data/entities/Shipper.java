@@ -9,9 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "shippers") @Entity @Data @Builder @NoArgsConstructor @AllArgsConstructor
-public class Shipper {
+public class Shipper implements Serializable {
 
     @Id
     @Column(name = "shipperid")

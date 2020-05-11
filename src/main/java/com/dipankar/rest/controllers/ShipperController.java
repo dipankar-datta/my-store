@@ -1,29 +1,27 @@
 package com.dipankar.rest.controllers;
 
-import com.dipankar.data.entities.Employee;
-import com.dipankar.data.entities.Region;
 import com.dipankar.data.entities.Shipper;
-import com.dipankar.rest.dtos.response.RegionResponseDTO;
 import com.dipankar.rest.dtos.response.ShipperResponseDTO;
 import com.dipankar.services.ShipperService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/shippers")
-public class ShipperController implements Serializable {
+@AllArgsConstructor
+public class ShipperController {
 
-    @Autowired
     private ShipperService shipperService;
 
     @GetMapping
@@ -39,7 +37,7 @@ public class ShipperController implements Serializable {
                     .map(ShipperResponseDTO::entityToResponseDTO)
                     .collect(Collectors.toList());
         } else {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -52,7 +50,6 @@ public class ShipperController implements Serializable {
             @ApiParam(value = "ID of the Shipper", required = true, example = "0")
             @PathVariable Long shipperId) {
         Optional<Shipper> shipperOptional = shipperService.getById(shipperId);
-        return shipperOptional.isPresent() ?
-                ShipperResponseDTO.entityToResponseDTO(shipperOptional.get()) : null;
+        return ShipperResponseDTO.entityToResponseDTO(shipperOptional.orElse(Shipper.builder().build()));
     }
 }
