@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
@@ -40,12 +41,12 @@ public class EmployeeControllerTest extends AbstractControllerTest {
 
     @Test
     public void list() throws Exception {
-        Mockito.when(employeeService.list()).thenReturn(Arrays.asList(getEmployee(dob, hireDate)));
+        Mockito.when(employeeService.list()).thenReturn(Collections.singletonList(getEmployee(dob, hireDate)));
         mockMvc.perform(get("/employees"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getEmployeeResponseDTO(dob, hireDate)))));
+                .andExpect(content().json(objectMapper.writeValueAsString(Collections.singletonList(getEmployeeResponseDTO(dob, hireDate)))));
     }
 
     @Test
@@ -76,7 +77,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
                 .salary(10F)
                 .title("Test Title")
                 .territories(
-                        Arrays.asList(
+                        Collections.singletonList(
                                 Territory.builder().region(
                                         Region.builder().build()
                                 ).build()
@@ -103,7 +104,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
                 .salary(10F)
                 .title("Test Title")
                 .territories(
-                        Arrays.asList(
+                        Collections.singletonList(
                                 TerritoryResponseDTO.builder().region(
                                         RegionResponseDTO.builder().build()
                                 ).build()

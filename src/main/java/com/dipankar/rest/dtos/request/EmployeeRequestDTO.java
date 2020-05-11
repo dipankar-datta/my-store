@@ -123,7 +123,7 @@ public class EmployeeRequestDTO implements RequestDTO<Employee>, Serializable {
                 .notes(notes)
                 .reportsTo(reportsTo.toEntity())
                 .salary(salary)
-                .territories(territories.stream().map(tr -> tr.toEntity()).collect(Collectors.toList())).build();
+                .territories(territories.stream().map(TerritoryRequestDTO::toEntity).collect(Collectors.toList())).build();
 
     }
 }

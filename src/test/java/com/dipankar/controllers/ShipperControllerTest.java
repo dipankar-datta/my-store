@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,13 +23,19 @@ public class ShipperControllerTest extends AbstractControllerTest{
 
     @Test
     public void list() throws Exception {
-        Mockito.when(shipperService.list()).thenReturn(Arrays.asList(getShipper()));
+        Mockito.when(shipperService.list()).thenReturn(Collections.singletonList(getShipper()));
 
         mockMvc.perform(get("/shippers"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getShipperResponseDTO()))));
+                .andExpect(
+                        content().json(
+                                objectMapper.writeValueAsString(
+                                        Collections.singletonList(getShipperResponseDTO())
+                                )
+                        )
+                );
     }
 
     @Test

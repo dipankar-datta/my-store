@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/categories")
 @AllArgsConstructor
-public class CategoryController implements Serializable {
+public class CategoryController{
 
     private CategoryService categoryService;
 
@@ -38,8 +37,6 @@ public class CategoryController implements Serializable {
     @GetMapping(path = {"/{categoryId}"})
     public CategoryResponseDTO getCategoryById(@PathVariable Long categoryId) {
         Optional<Category> categoryOptional = categoryService.getById(categoryId);
-        return categoryOptional.isPresent() ?
-                CategoryResponseDTO.entityToResponseDTO(categoryOptional.get()) : null;
-
+        return CategoryResponseDTO.entityToResponseDTO(categoryOptional.orElse(Category.builder().build()));
     }
 }

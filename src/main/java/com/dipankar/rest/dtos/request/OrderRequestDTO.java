@@ -103,7 +103,7 @@ public class OrderRequestDTO implements RequestDTO<Order>, Serializable {
                 .shipPostalCode(shipPostalCode)
                 .shipCountry(shipCountry)
                 .orderItems(
-                        orderItems.stream().map(oi -> oi.toEntity()).collect(Collectors.toList())
+                        orderItems.stream().map(OrderItemRequestDTO::toEntity).collect(Collectors.toList())
                 ).build();
     }
 }

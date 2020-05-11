@@ -3,7 +3,6 @@ package com.dipankar.controllers;
 import com.dipankar.data.entities.*;
 import com.dipankar.rest.dtos.response.*;
 import com.dipankar.services.OrderService;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
@@ -37,22 +37,38 @@ public class OrderControllerTest extends AbstractControllerTest{
 
     @Test
     public void list() throws Exception {
-        Mockito.when(orderService.list()).thenReturn(Arrays.asList(getOrder(orderDate, requiredDate, shippedDate)));
+        Mockito.when(orderService.list())
+                .thenReturn(Collections.singletonList(getOrder(orderDate, requiredDate, shippedDate)));
         mockMvc.perform(get("/orders"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getOrderResponseDTO(orderDate, requiredDate, shippedDate)))));
+                .andExpect(
+                        content().json(
+                                objectMapper.writeValueAsString(
+                                        Collections.singletonList(
+                                                getOrderResponseDTO(orderDate, requiredDate, shippedDate)
+                                        )
+                                )
+                        )
+                );
     }
 
     @Test
     public void getById() throws Exception {
-        Mockito.when(orderService.getById(1L)).thenReturn(Optional.of(getOrder(orderDate, requiredDate, shippedDate)));
+        Mockito.when(orderService.getById(1L))
+                .thenReturn(Optional.of(getOrder(orderDate, requiredDate, shippedDate)));
         mockMvc.perform(get("/orders/1"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Optional.of(getOrderResponseDTO(orderDate, requiredDate, shippedDate)))));
+                .andExpect(
+                        content().json(
+                                objectMapper.writeValueAsString(
+                                        Optional.of(getOrderResponseDTO(orderDate, requiredDate, shippedDate))
+                                )
+                        )
+                );
     }
 
     private Order getOrder(Date orderDate, Date requiredDate, Date shippedDate) {
@@ -63,7 +79,7 @@ public class OrderControllerTest extends AbstractControllerTest{
         return Order
                 .builder()
                 .orderDate(orderDate)
-                .orderItems(Arrays.asList(orderItem))
+                .orderItems(Collections.singletonList(orderItem))
                 .requiredDate(requiredDate)
                 .shipAddress("Test Shipping Address")
                 .shipCity("Test Shipping City")
@@ -84,7 +100,7 @@ public class OrderControllerTest extends AbstractControllerTest{
         return OrderResponseDTO
                 .builder()
                 .orderDate(orderDate)
-                .orderItems(Arrays.asList(orderItemResponseDTO))
+                .orderItems(Collections.singletonList(orderItemResponseDTO))
                 .requiredDate(requiredDate)
                 .shipAddress("Test Shipping Address")
                 .shipCity("Test Shipping City")

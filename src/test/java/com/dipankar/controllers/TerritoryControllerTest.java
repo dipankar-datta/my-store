@@ -3,7 +3,6 @@ package com.dipankar.controllers;
 import com.dipankar.data.entities.Region;
 import com.dipankar.data.entities.Territory;
 import com.dipankar.rest.dtos.response.RegionResponseDTO;
-import com.dipankar.rest.dtos.response.SupplierResponseDTO;
 import com.dipankar.rest.dtos.response.TerritoryResponseDTO;
 import com.dipankar.services.TerritoryService;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,12 +25,18 @@ public class TerritoryControllerTest extends AbstractControllerTest{
 
     @Test
     public void list() throws Exception {
-        Mockito.when(territoryService.list()).thenReturn(Arrays.asList(getTerritory()));
+        Mockito.when(territoryService.list()).thenReturn(Collections.singletonList(getTerritory()));
         mockMvc.perform(get("/territories"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getTerritoryResponseDTO()))));
+                .andExpect(
+                        content().json(
+                                objectMapper.writeValueAsString(
+                                        Collections.singletonList(getTerritoryResponseDTO())
+                                )
+                        )
+                );
     }
 
     @Test

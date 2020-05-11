@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,12 +23,18 @@ public class RegionControllerTest extends AbstractControllerTest{
 
     @Test
     public void list() throws Exception {
-        Mockito.when(regionService.list()).thenReturn(Arrays.asList(getRegion()));
+        Mockito.when(regionService.list()).thenReturn(Collections.singletonList(getRegion()));
         mockMvc.perform(get("/regions"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getRegionResponseDTO()))));
+                .andExpect(
+                        content().json(
+                                objectMapper.writeValueAsString(
+                                        Collections.singletonList(getRegionResponseDTO())
+                                )
+                        )
+                );
     }
 
     @Test

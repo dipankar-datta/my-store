@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/orders")
 @AllArgsConstructor
-public class OrderController implements Serializable {
+public class OrderController {
 
     private OrderService orderService;
 
@@ -30,15 +30,14 @@ public class OrderController implements Serializable {
                     .map(OrderResponseDTO::entityToResponseDTO)
                     .collect(Collectors.toList());
         } else {
-            return null;
+            return Collections.emptyList();
         }
     }
 
     @GetMapping(path = {"/{orderId}"})
     public OrderResponseDTO getOrderById(@PathVariable Long orderId) {
         Optional<Order> orderOptional = orderService.getById(orderId);
-        return orderOptional.isPresent() ?
-                OrderResponseDTO.entityToResponseDTO(orderOptional.get()) : null;
+        return OrderResponseDTO.entityToResponseDTO(orderOptional.orElse(Order.builder().build()));
 
     }
 }

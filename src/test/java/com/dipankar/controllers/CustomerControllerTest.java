@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -23,12 +23,12 @@ public class CustomerControllerTest extends AbstractControllerTest{
     @Test
     public void list() throws Exception {
 
-        Mockito.when(customerService.list()).thenReturn(Arrays.asList(getCustomer()));
+        Mockito.when(customerService.list()).thenReturn(Collections.singletonList(getCustomer()));
         mockMvc.perform(get("/customers"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().json(objectMapper.writeValueAsString(Arrays.asList(getCustomerResponseDTO()))));
+                .andExpect(content().json(objectMapper.writeValueAsString(Collections.singletonList(getCustomerResponseDTO()))));
     }
 
     @Test

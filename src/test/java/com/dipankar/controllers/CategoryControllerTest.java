@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 public class CategoryControllerTest extends AbstractControllerTest{
@@ -24,7 +24,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
     @Test
     public void list() throws Exception {
 
-        Mockito.when(categoryService.list()).thenReturn(Arrays.asList(getCategory()));
+        Mockito.when(categoryService.list()).thenReturn(Collections.singletonList(getCategory()));
         mockMvc.perform(get("/categories"))
                 .andDo(print())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -32,7 +32,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .andExpect(
                         content()
                                 .json(objectMapper.writeValueAsString(
-                                        Arrays.asList(getCategoryResponseDTO())
+                                        Collections.singletonList(getCategoryResponseDTO())
                                         )
                                 )
                 );
