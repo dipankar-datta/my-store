@@ -1,28 +1,26 @@
 package com.dipankar.rest.controllers;
 
-import com.dipankar.data.entities.Customer;
 import com.dipankar.data.entities.Employee;
-import com.dipankar.rest.dtos.response.CustomerResponseDTO;
 import com.dipankar.rest.dtos.response.EmployeeResponseDTO;
 import com.dipankar.services.EmployeeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/employees")
-public class EmployeeController implements Serializable {
+@AllArgsConstructor
+public class EmployeeController {
 
-    @Autowired
     private EmployeeService employeeService;
 
     @GetMapping
@@ -38,7 +36,7 @@ public class EmployeeController implements Serializable {
                     .map(EmployeeResponseDTO::entityToResponseDTO)
                     .collect(Collectors.toList());
         } else {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -51,8 +49,6 @@ public class EmployeeController implements Serializable {
             @ApiParam(value = "ID of the Employee", required = true, example = "0")
             @PathVariable Long employeeId) {
         Optional<Employee> employeeOptional = employeeService.getById(employeeId);
-        return employeeOptional.isPresent() ?
-                EmployeeResponseDTO.entityToResponseDTO(employeeOptional.get()) : null;
-
+        return EmployeeResponseDTO.entityToResponseDTO(employeeOptional.orElse(Employee.builder().build()));
     }
 }
