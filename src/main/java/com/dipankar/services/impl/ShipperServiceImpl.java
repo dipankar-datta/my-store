@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Shipper;
 import com.dipankar.data.repositories.ShipperRepository;
 import com.dipankar.services.ShipperService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class ShipperServiceImpl implements ShipperService {
 
     private ShipperRepository shipperRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Shipper> list() {
         return shipperRepository.findAll();
     }

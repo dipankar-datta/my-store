@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Order;
 import com.dipankar.data.repositories.OrderRepository;
 import com.dipankar.services.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderRepository orderRepository;
 
-    @Override
+    @Override @Cacheable(value = "twenty-sec-cache")
     public List<Order> list() {
         return orderRepository.findAll();
     }

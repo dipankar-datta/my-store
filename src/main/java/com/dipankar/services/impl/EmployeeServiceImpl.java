@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Employee;
 import com.dipankar.data.repositories.EmployeeRepository;
 import com.dipankar.services.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Employee> list() {
         return employeeRepository.findAll();
     }

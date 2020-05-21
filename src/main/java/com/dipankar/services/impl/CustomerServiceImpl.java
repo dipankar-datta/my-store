@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Customer;
 import com.dipankar.data.repositories.CustomerRepository;
 import com.dipankar.services.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Customer> list() {
         return customerRepository.findAll();
     }

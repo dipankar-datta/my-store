@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Category;
 import com.dipankar.data.repositories.CategoryRepository;
 import com.dipankar.services.CategoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Category> list() {
         return categoryRepository.findAll();
     }

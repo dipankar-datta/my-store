@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Territory;
 import com.dipankar.data.repositories.TerritoryRepository;
 import com.dipankar.services.TerritoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class TerritoryServiceImpl implements TerritoryService {
 
     private TerritoryRepository territoryRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Territory> list() {
         return territoryRepository.findAll();
     }

@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Supplier;
 import com.dipankar.data.repositories.SupplierRepository;
 import com.dipankar.services.SupplierService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     private SupplierRepository supplierRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Supplier> list() {
         return supplierRepository.findAll();
     }

@@ -4,6 +4,7 @@ import com.dipankar.data.entities.Region;
 import com.dipankar.data.repositories.RegionRepository;
 import com.dipankar.services.RegionService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class RegionServiceImpl implements RegionService {
 
     private RegionRepository regionRepository;
 
-    @Override
+    @Override  @Cacheable(value = "twenty-sec-cache")
     public List<Region> list() {
         return regionRepository.findAll();
     }
